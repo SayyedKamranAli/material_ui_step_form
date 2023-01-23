@@ -21,7 +21,7 @@ function Header() {
       >
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Company name
+            TECH SKA
           </Typography>
         </Toolbar>
       </AppBar>

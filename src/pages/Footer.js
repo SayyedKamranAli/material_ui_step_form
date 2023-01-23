@@ -13,7 +13,7 @@ function Footer() {
     return (
       <Typography variant="body2" color="text.secondary" align="center">
         {'Copyright © '}
-        <Button  onClick={nextClick} >Your Website</Button>
+        <Button  onClick={nextClick} >TECH SKA</Button>
         {new Date().getFullYear()}
         {'.'}
       </Typography>

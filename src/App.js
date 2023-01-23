@@ -14,10 +14,10 @@ function App() {
       <Routes>
         <Route path="/material_ui_step_form" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/addressform" element={<AddressForm />} />
-          <Route path="/paymentform" element={<PaymentForm />} />
-          <Route path="/review" element={<Review />} />
-          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/material_ui_step_form/addressform" element={<AddressForm />} />
+          <Route path="/material_ui_step_form/paymentform" element={<PaymentForm />} />
+          <Route path="/material_ui_step_form/review" element={<Review />} />
+          <Route path="/material_ui_step_form/checkout" element={<Checkout />} />
         </Route>
       </Routes>
     </BrowserRouter>

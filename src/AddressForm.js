@@ -18,11 +18,11 @@ export default function AddressForm() {
       };
 
       const [values, setValues] = React.useState(initialValues);
-      console.log('values', values)
+      
 
       const handleInputChange = (e) => {
         const { name, value,checked } = e.target;
-        console.log('checked',value, checked)
+        
         setValues({ ...values, [name]: value , checked});
       };
 

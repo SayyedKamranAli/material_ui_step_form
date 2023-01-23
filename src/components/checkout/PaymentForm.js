@@ -29,11 +29,11 @@ export default function PaymentForm() {
     const handleClick = (event) => {
       event.preventDefault();
     
-      back("/");
+      back("/material_ui_step_form");
     };
     const nextClick = () => {
       dispatch(paymentData(datas));
-        next("/review");
+        next("/material_ui_step_form/review");
       };
   return (
     <React.Fragment>

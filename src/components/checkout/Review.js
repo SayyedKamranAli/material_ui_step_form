@@ -46,11 +46,11 @@ export default function Review() {
   const back = useNavigate();
   const next = useNavigate();
   const handleClick = () => {
-    back("/paymentform");
+    back("/material_ui_step_form/paymentform");
   };
   const nextClick = () => {
    
-      next("/checkout");
+      next("/material_ui_step_form/checkout");
     };
   return (
     <React.Fragment>

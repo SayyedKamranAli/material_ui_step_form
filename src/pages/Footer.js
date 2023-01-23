@@ -7,7 +7,7 @@ function Footer() {
   function Copyright() {
     let next = useNavigate();
   const nextClick=()=>{
-    next('/');
+    next('/material_ui_step_form');
     
   }
     return (

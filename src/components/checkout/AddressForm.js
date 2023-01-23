@@ -124,7 +124,7 @@ export default function AddressForm() {
     const isValid = checkValidation();
     if (isValid) {
     dispatch(addData(values));
-    next("/paymentform");
+    next("/material_ui_step_form/paymentform");
     }
   };
 

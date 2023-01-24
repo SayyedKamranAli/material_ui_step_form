@@ -42,6 +42,9 @@ export default function AddressForm() {
     if (!values.firstname) {
       errors.firstname = "First name is required";
       isValid = false;
+    } else if(values.firstname.trim().length < 4 ){
+      errors.firstname = "First name is atleast greater then 3 char";
+      isValid = false;
     } else {
       errors.firstname = "";
     }
@@ -50,7 +53,10 @@ export default function AddressForm() {
     if (!values.lastname) {
       errors.lastname = "Last name is required";
       isValid = false;
-    } else {
+    } else if(values.lastname.trim().length < 3 ){
+      errors.lastname = "Last name is atleast greater then 2 char";
+      isValid = false;
+    }else {
       errors.lastname = "";
     }
 
@@ -67,19 +73,56 @@ export default function AddressForm() {
       errors.email = "";
     }
 
-    //mobile number validation
+    // mobile number validation
     const re = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
     if (!values.mobile) {
-      errors.mobile = "contact number no. is required";
+      errors.mobile = "Contact number is required";
       isValid = false;
     } else if (!values.mobile.match(re)) {
       
-      errors.mobile = "contact number must be equal to 10 digit";
+      errors.mobile = "Contact number must be equal to 10 digit";
       isValid = false;
     } else {
       errors.mobile = "";
     }
+    
+    // adddress validation
+    if(values.address.trim().length < 16){
+      errors.address = 'Address should be more then 15 charecter';
+      isValid = false;
+    }else if(values.address.trim().length > 36){
+      errors.address = 'Address should be less then 35 charecter';
+    } else {
+      errors.address = '';
+    }
 
+    // city validation
+    if(values.city.trim().length < 6){
+      errors.city = 'City should be more then 5 charecter';
+      isValid = false;
+    }else if(values.city.trim().length > 21){
+      errors.city = 'City should be less then 20 charecter';
+    } else {
+      errors.city = '';
+    }
+
+    // zip/postal validation
+    if(values.zip.trim().length < 6){
+      errors.zip = 'Zip code should be atleast 6 digit';
+      isValid = false;
+    }else if(values.zip.trim().length > 8){
+      errors.zip = 'Zip code should be less then 7 charecter';
+    } else {
+      errors.zip = '';
+    }
+
+    // country validation
+    if(!values.country.trim()){
+      errors.country = 'value required';
+      isValid = false;
+    } else {
+      errors.country ='';
+    }
     //   //password validation
     //   // const cond1 = "/^(?=.*[a-z]).{6,20}$/";
     //   // const cond2 = "/^(?=.*[A-Z]).{6,20}$/";
@@ -222,6 +265,11 @@ export default function AddressForm() {
             value={values.address}
             onChange={handleInputChange}
           />
+          {validation.address && (
+                  <p className="mb-0" style={{ color: "red" ,textAlign: "justify"}}>
+                    {validation.address}
+                  </p>
+                )}
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -235,6 +283,11 @@ export default function AddressForm() {
             value={values.city}
             onChange={handleInputChange}
           />
+          {validation.city && (
+                  <p className="mb-0" style={{ color: "red" ,textAlign: "justify"}}>
+                    {validation.city}
+                  </p>
+                )}
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -259,6 +312,11 @@ export default function AddressForm() {
             value={values.zip}
             onChange={handleInputChange}
           />
+          {validation.zip && (
+                  <p className="mb-0" style={{ color: "red" ,textAlign: "justify"}}>
+                    {validation.zip}
+                  </p>
+                )}
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -272,6 +330,11 @@ export default function AddressForm() {
             value={values.country}
             onChange={handleInputChange}
           />
+          {validation.country && (
+                  <p className="mb-0" style={{ color: "red" ,textAlign: "justify"}}>
+                    {validation.country}
+                  </p>
+                )}
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel

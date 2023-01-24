@@ -17,8 +17,56 @@ export default function PaymentForm() {
     cardexpird: "",
   };
   const [datas, setDatas] = React.useState(initialValues);
+  const [validation, setValidation] = React.useState({
+    cardexpird: "",
+  });
 
   const dispatch = useDispatch();
+  const checkValidation = () => {
+    let errors = { ...validation };
+    let isValid = true;
+
+    if(datas.cardtype.trim().length < 3){
+      errors.cardtype = 'cardtype should be more then 2 digit';
+      isValid = false;
+    }else if(datas.cardtype.trim().length > 3){
+      errors.cardtype = 'cardtype should be less then 4 digit';
+      isValid = false;
+    } else {
+      errors.cardtype = '';
+    }
+
+    if (!datas.cardholder) {
+      errors.cardholder = "cardholder name is required";
+      isValid = false;
+    } else if(datas.cardholder.trim().length < 4 ){
+      errors.cardholder = "cardholder name is atleast greater then 3 char";
+      isValid = false;
+    } else {
+      errors.cardholder = "";
+    }
+
+    // card number validation
+    const cardno = /^(?:5[1-5][0-9]{14})$/;
+    if(!datas.cardnumber.match(cardno)){
+       errors.cardnumber = 'Starting with 51 through 55, length 16 digits (Mastercard)';
+       isValid = false;
+    } else{
+      errors.cardnumber = '';
+    }
+
+    // date validation
+    const ddmmyyyy = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
+    if(!datas.cardexpird.match(ddmmyyyy)){
+      errors.cardexpird = 'Date should be DD-MM-YYYY or DD/MM/YYYY format'
+      isValid = false;
+    } else {
+      errors.cardexpird = "";
+    }
+
+    setValidation(errors);
+    return isValid;
+  };
   const handleInputChange = (e) => {
     const { name, value, checked } = e.target;
     setDatas({ ...datas, [name]: value, checked });
@@ -32,8 +80,11 @@ export default function PaymentForm() {
       back("/material_ui_step_form");
     };
     const nextClick = () => {
+      const isValid = checkValidation();
+    if (isValid) {
       dispatch(paymentData(datas));
         next("/material_ui_step_form/review");
+    }
       };
   return (
     <React.Fragment>
@@ -58,6 +109,11 @@ export default function PaymentForm() {
             value={datas.cardholder}
             onChange={handleInputChange}
           />
+           {validation.cardholder && (
+                  <p className="mb-0" style={{ color: "red",textAlign: "justify" }}>
+                    {validation.cardholder}
+                  </p>
+                )}
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
@@ -71,6 +127,11 @@ export default function PaymentForm() {
             value={datas.cardnumber}
             onChange={handleInputChange}
           />
+          {validation.cardnumber && (
+                  <p className="mb-0" style={{ color: "red",textAlign: "justify" }}>
+                    {validation.cardnumber}
+                  </p>
+                )}
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
@@ -84,6 +145,11 @@ export default function PaymentForm() {
             value={datas.cardexpird}
             onChange={handleInputChange}
           />
+          {validation.cardexpird && (
+                  <p className="mb-0" style={{ color: "red",textAlign: "justify" }}>
+                    {validation.cardexpird}
+                  </p>
+                )}
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
@@ -98,6 +164,11 @@ export default function PaymentForm() {
             value={datas.cardtype}
             onChange={handleInputChange}
           />
+          {validation.cardtype && (
+                  <p className="mb-0" style={{ color: "red",textAlign: "justify" }}>
+                    {validation.cardtype}
+                  </p>
+                )}
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel

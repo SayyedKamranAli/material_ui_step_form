@@ -102,7 +102,7 @@ export default function Review() {
             Payment details
           </Typography>
           <Grid container>
-          <Typography>Card Type : {paymentData.cardtype}</Typography>
+          <Typography style={{display:"none"}}>Card Type : {paymentData.cardtype}</Typography>
              <Typography>Card Holder : {paymentData.cardholder}</Typography>
              <Typography>Card number : {paymentData.cardnumber}</Typography>
              <Typography>Expiry date : {paymentData.cardexpird}</Typography>

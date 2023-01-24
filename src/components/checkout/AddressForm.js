@@ -311,6 +311,7 @@ export default function AddressForm() {
             variant="standard"
             value={values.zip}
             onChange={handleInputChange}
+            type='number'
           />
           {validation.zip && (
                   <p className="mb-0" style={{ color: "red" ,textAlign: "justify"}}>

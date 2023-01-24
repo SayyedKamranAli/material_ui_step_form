@@ -118,7 +118,7 @@ export default function AddressForm() {
 
     // country validation
     if(!values.country.trim()){
-      errors.country = 'value required';
+      errors.country = 'field is required';
       isValid = false;
     } else {
       errors.country ='';
